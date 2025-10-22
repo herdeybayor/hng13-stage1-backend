@@ -398,4 +398,4 @@ This project is part of the HNG13 Backend Wizards Stage 1 task.
 
 ## Author
 
-Built with care and attention to detail.
+Sherifdeen Adebayo - [@herdeybayor](https://github.com/herdeybayor)
