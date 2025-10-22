@@ -1,0 +1,93 @@
+### Base URL (change this based on your environment)
+@baseUrl = http://localhost:5000
+
+### 1. Create a palindrome string
+POST {{baseUrl}}/strings
+Content-Type: application/json
+
+{
+  "value": "racecar"
+}
+
+### 2. Create a normal string
+POST {{baseUrl}}/strings
+Content-Type: application/json
+
+{
+  "value": "hello world"
+}
+
+### 3. Create another palindrome
+POST {{baseUrl}}/strings
+Content-Type: application/json
+
+{
+  "value": "madam"
+}
+
+### 4. Create a multi-word palindrome
+POST {{baseUrl}}/strings
+Content-Type: application/json
+
+{
+  "value": "noon"
+}
+
+### 5. Try to create duplicate (should get 409)
+POST {{baseUrl}}/strings
+Content-Type: application/json
+
+{
+  "value": "racecar"
+}
+
+### 6. Get specific string
+GET {{baseUrl}}/strings/racecar
+
+### 7. Get all strings
+GET {{baseUrl}}/strings
+
+### 8. Get palindromes only
+GET {{baseUrl}}/strings?is_palindrome=true
+
+### 9. Get strings with exact word count
+GET {{baseUrl}}/strings?word_count=2
+
+### 10. Get strings with min/max length
+GET {{baseUrl}}/strings?min_length=5&max_length=10
+
+### 11. Get strings containing specific character
+GET {{baseUrl}}/strings?contains_character=a
+
+### 12. Combined filters
+GET {{baseUrl}}/strings?is_palindrome=true&word_count=1
+
+### 13. Natural language query - single word palindromes
+GET {{baseUrl}}/strings/filter-by-natural-language?query=all single word palindromic strings
+
+### 14. Natural language query - strings longer than
+GET {{baseUrl}}/strings/filter-by-natural-language?query=strings longer than 5 characters
+
+### 15. Natural language query - contains letter
+GET {{baseUrl}}/strings/filter-by-natural-language?query=strings containing the letter a
+
+### 16. Delete a string
+DELETE {{baseUrl}}/strings/racecar
+
+### 17. Try to get deleted string (should get 404)
+GET {{baseUrl}}/strings/racecar
+
+### 18. Try to delete non-existent string (should get 404)
+DELETE {{baseUrl}}/strings/nonexistent
+
+### 19. Invalid request - missing value field (should get 400)
+POST {{baseUrl}}/strings
+Content-Type: application/json
+
+{
+  "wrong_field": "test"
+}
+
+### 20. Invalid query parameter (should get 400)
+GET {{baseUrl}}/strings?min_length=-5
+
