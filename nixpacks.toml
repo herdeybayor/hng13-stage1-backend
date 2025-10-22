@@ -1,0 +1,12 @@
+[phases.setup]
+nixPkgs = ["dotnet-sdk_8"]
+
+[phases.install]
+cmds = ["dotnet restore"]
+
+[phases.build]
+cmds = ["dotnet publish --no-restore -c Release -o out"]
+
+[start]
+cmd = "cd out && dotnet StringAnalyzer.dll --urls http://0.0.0.0:$PORT"
+
